@@ -1,0 +1,70 @@
+body {
+	padding: 10px;
+}
+
+nav {
+	background-color: #FFB4B0;
+	border: 1px solid black;
+	padding: 1em;
+	margin: 0 1% 20px 1%;
+
+}
+
+.container {
+	/*max-*/width: 100%;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: space-around;
+	display: flex;
+}
+
+.container #options {
+	border: 1px solid black;
+}
+
+.container #songs {
+	border: 1px solid black;
+}
+
+.container > .halfwidth {
+	min-width: 45%;
+}
+
+.container legend {
+	float: left;
+}
+
+#options {
+	background-color: #4DD7FA;
+	width: 25%;
+	justify-content: flex-start;
+	padding: 10px;
+}
+
+#songs {
+	background-color: #FEFAC0;
+	padding: 5px;
+	width: 65%;
+}
+
+#songs h1 {
+	color: #785616;
+}
+
+.fullwidth {
+	width: 95%;
+	display: flex;
+	justify-content: center;
+}
+
+.halfwidth {
+	width: 45%;
+	font-size: .8em;
+	display: inline-flex;
+}
+
+#options button {
+	height: 1.7em;
+	width: 75%;
+	justify-content: center;
+}
