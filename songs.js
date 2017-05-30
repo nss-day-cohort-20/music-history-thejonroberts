@@ -43,7 +43,7 @@ for (var i = 0; i < songs.length; i++) {
 	songs[i] = songs[i].replace("&", "&amp;");
 	songs[i] = songs[i].replace("!", "");
 	//write songs to DOM:
-	songList.innerHTML += `<p>${songs[i]}</p>`;
+	songList.innerHTML += `<li>${songs[i]}</li>`;
 }
 // console.log(songs);
 // console.log(songList);
