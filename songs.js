@@ -36,14 +36,14 @@ var songList = document.getElementById("songs");
 //loop through songs array to put songs list into html:
 for (var i = 0; i < songs.length; i++) {
 	//remove replace special characters (with proper html tags where needed)
-	songs[i] = songs[i].replace(">", "-");
+	songs[i] = songs[i].replace(">", "</h1><p>");
 	songs[i] = songs[i].replace("*", "");
 	songs[i] = songs[i].replace("@", "a");
 	songs[i] = songs[i].replace("(", "");
 	songs[i] = songs[i].replace("&", "&amp;");
 	songs[i] = songs[i].replace("!", "");
 	//write songs to DOM:
-	songList.innerHTML += `<li>${songs[i]}</li>`;
+	songList.innerHTML += `<li><h1>${songs[i]}</p></li>`;
 }
 // console.log(songs);
 // console.log(songList);
