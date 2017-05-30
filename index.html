@@ -18,7 +18,6 @@
 
 	<div class="container">
 		<div id="options" class="container">
-			
 <!--SLIDER: SONG LENGTH-->
 			<legend>Song Length:</legend>
 			<input   class="fullwidth" type="range" list="tickmarks" min="0" max="600" step="30">
@@ -35,7 +34,6 @@
 			  <option value="540">
 			  <option value="600" label="10">
 			</datalist>
-
 <!-- ARTIST DROP -->
 			<legend>Artist:</legend>
 			<select  class="fullwidth">
@@ -45,7 +43,6 @@
 				<option>Sparks</option>
 				<option>Guided by Voices</option>
 			</select>
-
 <!-- ALBUM DROP -->
 			<legend>Album:</legend>
 			<select  class="fullwidth">
@@ -55,10 +52,7 @@
 				<option>Album 3</option>
 				<option>Chronicle</option>
 			</select>
-
-
 <!-- GENRE CHECKBOXES -->
-
 			<legend>Genre:</legend>
 			<div class="container">	
 				<div class="halfwidth">
@@ -86,31 +80,22 @@
 			      <label for="hiphop">Hop-Hop</label>
 			    </div>
 			</div>
-
 <!-- BUTTON -->
 			<div class="fullwidth">
 				<button class= "halfwidth" name="filter">Filter</button>
 			</div>
-
-    </div>
+		</div>
 
 <!-- PLAYLIST -->
-
-		<div id="songs">
-			<h1>Capri Pants</h1>
-			<p>Bikini Kill | Reject All American | Riot Grrl</p>
-
-			<h1>House Full of Garbage</h1>
-			<p>Shellac | Terraform | Post Hardcore</p>
-
-			<h1>Reuters</h1>
-			<p>Wire | Pink Flag | Punk Rock</p>
-
-			<h1>I am a Scientist</h1>
-			<p>Guided by Voices | Bee Thousand | Lo-fi</p>
+		<div id="songs"> 
+			<ul id="songList"><!--songs.js will write song list into this element-->
+			
+			</ul>
 		</div>
 	</div>
 
 <script src="songs.js"></script>
+
 </body>
+
 </html>
