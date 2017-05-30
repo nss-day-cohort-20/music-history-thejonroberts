@@ -10,6 +10,7 @@ nav {
 
 }
 
+/*GENERAL CONTAINER STYLE*/
 .container {
 	/*max-*/width: 100%;
 	flex-wrap: wrap;
@@ -41,6 +42,7 @@ nav {
 	padding: 10px;
 }
 
+/*SONG LIST*/
 #songs {
 	background-color: #FEFAC0;
 	padding: 5px;
@@ -49,6 +51,8 @@ nav {
 	color: #785616;
 }
 
+/*JS writes h1 and p tags to break up track list li's into lines;
+these rules align them within the #songs container*/
 #songs h1 {
 	display: inline;
 	padding: 0;
@@ -62,6 +66,7 @@ nav {
 	margin: 0;
 }
 
+/*CONTAINER CLASSES: for dividing/centering fullwidth vs colums*/
 .fullwidth {
 	width: 95%;
 	display: flex;
@@ -74,6 +79,7 @@ nav {
 	display: inline-flex;
 }
 
+/*BUTTON STYLING*/
 #options button {
 	height: 1.7em;
 	width: 75%;
