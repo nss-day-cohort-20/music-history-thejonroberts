@@ -1,32 +1,34 @@
-// // Use JavaScript arrays, loops, and innerHTML to show the music you love.
+//Put xmr into variable
+let getSongData = new XMLHttpRequest();
 
-// Use JavaScript to create a list of songs in the index.html file for your Music History project. Download the songs.js file, which contains an array of strings with song information.
+function dataRequestFail() {
+	console.log('An error occured while transferrring the data');
+}
 
-// Add one song to the beginning and the end of the array.
-// Loop over the array, and remove any words or characters that obviously don't belong.
-// Find and replace the > character in each item with a - character.
-// Add each string to the DOM in index.html in the main content area.
-// Example output:
+function parseSongData() {
+	console.log('getSongData', getSongData);  //these two lines are the same.  myRequest is the event.target
+	console.log('event.target', event.target);
+	var data = JSON.parse(event.target.responseText);  //parse the returned info into js object
+	console.log('data', data);
+	outputSongs(data.song);
+}
 
-// {Song name} by {Artist} on the album {Album}
+//set up event listeners for compeeted request and aborted request
+getSongData.addEventListener("load", parseSongData);
+getSongData.addEventListener("error", dataRequestFail);
 
-// {Song name} by {Artist} on the album {Album}
+//GET, POST, PUT, DELETE, PATCH - main methods (http verb) for xmr
+//tell it which http ver to use
+getSongData.open("GET", "music.json");
+//go get it, boy!
+getSongData.send();
 
-// ...
-// ----=========------end of requirements
-
-//Declare array songs - from given file
-var songs = [];
-
-// console.log(songs);
-
-
-
-//Declare DOM html element for song list:
-var songList = document.getElementById("songs");
-// console.log(songList);
-// console.log(songs);
-
+function outputSongs(songsArray) {
+	let songList = document.getElementById("songList");
+	songsArray.forEach(function(song) {
+		songList.innerHTML += `<h2>${song.title}</h2><p>by ${song.artist} from the album ${song.album}</p>`;
+	});
+}
 //loop through songs array to put songs list into html:
 for (var i = 0; i < songs.length; i++) {
 	//write songs to DOM:
