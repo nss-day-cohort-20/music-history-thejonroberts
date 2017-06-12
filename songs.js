@@ -26,7 +26,7 @@ getSongData.send();
 function outputSongs(songsArray) {
 	let songList = document.getElementById("songList");
 	songsArray.forEach(function(song) {
-		songList.innerHTML += `<h2>${song.title}</h2><p>by ${song.artist} from the album ${song.album}</p>`;
+		songList.innerHTML += `<li><button>Remove</button><span class="title">${song.title} </span><span> by ${song.artist} from the album ${song.album}</span></li>`;
 	});
 }
 //loop through songs array to put songs list into html:

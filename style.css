@@ -52,10 +52,25 @@ nav {
 
 /*JS writes h1 and p tags to break up track list li's into lines;
 these rules align them within the #songs container*/
-#songs h1 {
+/*#songs {
+	display: inline-flex;
+	justify-content: space-between;
+}*/
+
+#songs li {
+	padding-bottom: .4em;
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title {
 	display: inline;
-	padding: 0;
-	margin: 0;
+	font-weight: bolder;
+	font-size: 1.2em;
+	margin: 0 .5em;
+	flex-grow: 1;
 }
 
 #songs p {
