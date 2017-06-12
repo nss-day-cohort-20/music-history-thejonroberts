@@ -58,6 +58,7 @@ these rules align them within the #songs container*/
 }*/
 
 #songs li {
+	width: 100%;
 	padding-bottom: .4em;
 	display: inline-flex;
 	flex-wrap: wrap;
@@ -65,20 +66,21 @@ these rules align them within the #songs container*/
 	align-items: center;
 }
 
+span {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
 .title {
 	display: inline;
+	text-align: left;
 	font-weight: bolder;
 	font-size: 1.2em;
 	margin: 0 .5em;
 	flex-grow: 1;
 }
 
-#songs p {
-	display: block;
-	text-indent: 1.5em;
-	padding: 0;
-	margin: 0;
-}
+
 
 /*CONTAINER CLASSES: for dividing/centering fullwidth vs colums*/
 .fullwidth {
