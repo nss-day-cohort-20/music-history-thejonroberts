@@ -101,3 +101,7 @@ span {
 	width: 75%;
 	justify-content: center;
 }
+
+.hidden {
+	display: none;
+}

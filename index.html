@@ -8,94 +8,94 @@
 </head>
 
 <body>
-	<header>
-		<nav>
-			<a href="index.html">View Music</a>
-			<a href="add.html">Add Music</a>
-			<a href="profile.html">Profile</a>
-		</nav>
-	</header>
+		<header>
+			<nav>
+				<a href="index.html">View Music</a>
+				<a href="add.html">Add Music</a>
+				<a href="profile.html">Profile</a>
+			</nav>
+		</header>
 
-	<div class="container">
-		<div id="options" class="container">
-<!--SLIDER: SONG LENGTH-->
-			<legend>Song Length:</legend>
-			<input   class="fullwidth" type="range" list="tickmarks" min="0" max="600" step="30">
-			<datalist id="tickmarks">
-			  <option value="0" label="0">
-			  <option value="60">
-			  <option value="120">
-			  <option value="180" label="3">
-			  <option value="240">
-			  <option value="300" label="5">
-			  <option value="360">
-			  <option value="420" label="7">
-			  <option value="480">
-			  <option value="540">
-			  <option value="600" label="10">
-			</datalist>
-<!-- ARTIST DROP -->
-			<legend>Artist:</legend>
-			<select  class="fullwidth">
-				<option>Bikini Kill</option>
-				<option>the Magnetic Fields</option>
-				<option>Judas Priest</option>
-				<option>Sparks</option>
-				<option>Guided by Voices</option>
-			</select>
-<!-- ALBUM DROP -->
-			<legend>Album:</legend>
-			<select  class="fullwidth">
-				<option>Album 1</option>
-				<option>Album 2</option>
-				<option>Album 3</option>
-				<option>Album 3</option>
-				<option>Chronicle</option>
-			</select>
-<!-- GENRE CHECKBOXES -->
-			<legend>Genre:</legend>
-			<div class="container">	
-				<div class="halfwidth">
-			      <input type="checkbox" id="rock" name="interest" value="rock">
-			      <label for="rock">Rock</label>
-			    </div>
-			    <div class="halfwidth">
-			      <input type="checkbox" id="classical" name="interest" value="classical">
-			      <label for="classical">Classical</label>
-			    </div>
-			    <div class="halfwidth">
-			      <input type="checkbox" id="pop" name="interest" value="pop">
-			      <label for="pop">Pop</label>
-			    </div>
-			    <div class="halfwidth">
-			      <input type="checkbox" id="jazz" name="interest" value="jazz">
-			      <label for="jazz">Jazz</label>
-			    </div>
-			    <div class="halfwidth">
-			      <input type="checkbox" id="blues" name="interest" value="blues">
-			      <label for="blues">Blues</label>
-			    </div>
-			    <div class="halfwidth">
-			      <input type="checkbox" id="hiphop" name="interest" value="hiphop">
-			      <label for="hiphop">Hop-Hop</label>
-			    </div>
+		<div class="container">
+			<div id="options" class="container">
+				<!--SLIDER: SONG LENGTH-->
+				<legend>Song Length:</legend>
+				<input   class="fullwidth" type="range" list="tickmarks" min="0" max="600" step="30">
+				<datalist id="tickmarks">
+				  <option value="0" label="0">
+				  <option value="60">
+				  <option value="120">
+				  <option value="180" label="3">
+				  <option value="240">
+				  <option value="300" label="5">
+				  <option value="360">
+				  <option value="420" label="7">
+				  <option value="480">
+				  <option value="540">
+				  <option value="600" label="10">
+				</datalist>
+				<!-- ARTIST DROP -->
+				<legend>Artist:</legend>
+				<select  class="fullwidth">
+					<option>Bikini Kill</option>
+					<option>the Magnetic Fields</option>
+					<option>Judas Priest</option>
+					<option>Sparks</option>
+					<option>Guided by Voices</option>
+				</select>
+				<!-- ALBUM DROP -->
+				<legend>Album:</legend>
+				<select  class="fullwidth">
+					<option>Album 1</option>
+					<option>Album 2</option>
+					<option>Album 3</option>
+					<option>Album 3</option>
+					<option>Chronicle</option>
+				</select>
+				<!-- GENRE CHECKBOXES -->
+				<legend>Genre:</legend>
+				<div class="container">	
+					<div class="halfwidth">
+				      <input type="checkbox" id="rock" name="interest" value="rock">
+				      <label for="rock">Rock</label>
+				    </div>
+				    <div class="halfwidth">
+				      <input type="checkbox" id="classical" name="interest" value="classical">
+				      <label for="classical">Classical</label>
+				    </div>
+				    <div class="halfwidth">
+				      <input type="checkbox" id="pop" name="interest" value="pop">
+				      <label for="pop">Pop</label>
+				    </div>
+				    <div class="halfwidth">
+				      <input type="checkbox" id="jazz" name="interest" value="jazz">
+				      <label for="jazz">Jazz</label>
+				    </div>
+				    <div class="halfwidth">
+				      <input type="checkbox" id="blues" name="interest" value="blues">
+				      <label for="blues">Blues</label>
+				    </div>
+				    <div class="halfwidth">
+				      <input type="checkbox" id="hiphop" name="interest" value="hiphop">
+				      <label for="hiphop">Hop-Hop</label>
+				    </div>
+				</div>
+				<!-- BUTTON -->
+				<div class="fullwidth">
+					<button class= "halfwidth" name="filter">Filter</button>
+				</div>
 			</div>
-<!-- BUTTON -->
-			<div class="fullwidth">
-				<button class= "halfwidth" name="filter">Filter</button>
+
+			<!-- PLAYLIST -->
+			<div id="songs"> 
+				<ul id="songList"><!--songs.js will write song list into this element-->
+				
+				</ul>
 			</div>
 		</div>
 
-<!-- PLAYLIST -->
-		<div id="songs"> 
-			<ul id="songList"><!--songs.js will write song list into this element-->
-			
-			</ul>
-		</div>
-	</div>
+		<script src="songs.js"></script>
 
-<script src="songs.js"></script>
-
-</body>
+	</body>
 
 </html>
