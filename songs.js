@@ -26,20 +26,24 @@ function outputSongs(songsArray) {
 		songList.appendChild(listItem);
 	});
 }
-
-// let hideButtons = document.getElementsByClassName("hideButton");
-// console.log('hideButtons', hideButtons);
-// let songListIem = document.getElementsByClassName("songListItem");
-
-// function addHideClass(i) {
-// 		console.log('classhide', songListIem[i]);
-// 	};
-
-// for (var i = 0; i < hideButtons.length; i++) {
-// 	hideButtons[i].addEventListener("click", addHideClass);
-// 	console.log('buttons added?');
-// }
-
+//shows only page wrapper of id passed to it.
+function showOnlyWrapper(id) {
+	let allPageWrappers = document.querySelectorAll(".pageWrapper");
+	allPageWrappers.forEach( function(div) {
+		div.classList.add("hidden")
+	});
+	let targetedPage = document.getElementById(id);
+	targetedPage.classList.remove("hidden");
+}
+//handlers for link clicks - hide other wrappers, show desired wrapper (css .hidden rules applied/removed)
+let addMusicAnchor = document.getElementById("addMusicAnchor");
+addMusicAnchor.addEventListener("click", function() {
+	showOnlyWrapper("addMusicWrapper");
+})
+let listMusicAnchor = document.getElementById("listMusicAnchor");
+listMusicAnchor.addEventListener("click", function() {
+	showOnlyWrapper("viewMusicWrapper");
+})
 //set up event listeners for completed request and aborted request
 getSongData.addEventListener("load", parseSongData);
 getSongData.addEventListener("error", dataRequestFail);

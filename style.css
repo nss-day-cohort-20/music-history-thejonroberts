@@ -10,7 +10,7 @@ nav {
 }
 
 /*GENERAL CONTAINER STYLE*/
-.container {
+.pageWrapper {
 	/*max-*/width: 100%;
 	flex-wrap: wrap;
 	justify-content: space-around;
@@ -18,9 +18,9 @@ nav {
 	display: flex;
 }
 
-.container #options,
-.container #songs,
-.container #addMusic {
+.pageWrapper #options,
+.pageWrapper #songs,
+.pageWrapper #addMusic {
 	border: 1px solid black;
 }
 
@@ -76,6 +76,7 @@ nav {
  * TODO: style inputs nicer
  * Flex from song list is not quite what we want here.
  */
+
 
 .hideButton {
 	border: 1px solid darkgrey;
