@@ -1,17 +1,19 @@
 //Put xmr into variable
 let getSongData = new XMLHttpRequest();
-
+//XMR Handlers
 function dataRequestFail() {
 	console.log('An error occured while transferrring the data');
 }
-
 function parseSongData() {
 	var data = JSON.parse(event.target.responseText);  //parse the returned info into js object
 	// console.log('data', data);
 	outputSongs(data.song);
 }
 
-
+function outputSongs(songsArray) {
+	let songList = document.getElementById("songList");
+	let listItem = document.createElement("li")
+//Write each song in array to DOM
 function outputSongs(songsArray) {
 	let songList = document.getElementById("songList");
 	songsArray.forEach(function(song) {
@@ -36,7 +38,7 @@ for (var i = 0; i < hideButtons.length; i++) {
 getSongData.addEventListener("load", parseSongData);
 getSongData.addEventListener("error", dataRequestFail);
 
-//tell it which http ver to use 
+//tell it which http ver to use
 getSongData.open("GET", "music.json");
 getSongData.send();
 
