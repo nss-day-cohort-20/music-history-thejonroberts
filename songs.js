@@ -36,14 +36,14 @@ function clearListSongsDOM() {
 		songList.removeChild(songList.lastChild);
 	}
 }
-
+//remove add notification
 function removeUserAddNotification() {
-	if(document.getElementById("addNotification") !== null) {
+	if( document.getElementById("addNotification") !== null ) {
 		let addNotification = document.getElementById("addNotification");
 		addNotification.parentNode.removeChild(addNotification.parentNode.lastChild);
 	}
 }
-
+//notify user of add success
 function userAddNotification(newSong) {
 		removeUserAddNotification();
 		let addButton = document.getElementById("submitSongAdd");
@@ -55,12 +55,11 @@ function userAddNotification(newSong) {
 		addButton.parentNode.appendChild(addNotification);
 }
 
-
 /////////////////////////////
 //EVENT Listeners/Handlers //
 /////////////////////////////
 
-//DOM - NAVIGATION
+//DOM - PAGE NAVIGATION
 function showOnlyWrapper(id) {
 	let allPageWrappers = document.querySelectorAll(".pageWrapper");
 	allPageWrappers.forEach( function(div) {
@@ -94,13 +93,12 @@ addSongForm.addEventListener("submit", function() {
 	songObject.artist = document.getElementById("artistEntry").value;
 	songObject.album = document.getElementById("albumEntry").value;
 	allSongsArr.push(songObject);
-	//notify user of success
 	userAddNotification(songObject);
-
 })
 //////////////////
 //XMR Execution //
 //////////////////
+
 //set up event listeners for completed request and aborted request
 getSongData.addEventListener("load", parseSongData);
 getSongData.addEventListener("error", dataRequestFail);
