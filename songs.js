@@ -10,14 +10,20 @@ function parseSongData() {
 	outputSongs(data.song);
 }
 
-function outputSongs(songsArray) {
-	let songList = document.getElementById("songList");
-	let listItem = document.createElement("li")
-//Write each song in array to DOM
+// function outputSongs(songsArray) {
+// 	let songList = document.getElementById("songList");
+// //Write each song in array to DOM
 function outputSongs(songsArray) {
 	let songList = document.getElementById("songList");
 	songsArray.forEach(function(song) {
-		songList.innerHTML += `<li class="songListItem"><button class="hideButton">Remove</button><span class="title">${song.title} </span><span> by ${song.artist} from the album ${song.album}</span></li>`;
+		let listItem = document.createElement("li");
+		listItem.setAttribute("class", "songListItem");
+		listItem.innerHTML += `<button class="hideButton"> - </button>
+								<span class="title">${song.title}&nbsp;</span>
+								<span class="artist">${song.artist}&nbsp;</span>
+								from&nbsp;
+								<span class="album">${song.album}</span>`;
+		songList.appendChild(listItem);
 	});
 }
 
