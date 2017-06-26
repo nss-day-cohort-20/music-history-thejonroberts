@@ -93,14 +93,19 @@
 			</div>
 		</div>
 
-				<div class="container" id="addMusic">
-				<form action="javascript:void(0)" method="post" id="addSongForm">
-					<input type="text" name="titleEntry">
-					<input type="text" name="artistEntry">
-					<input type="text" name="albumEntry">
-					<input type="submit" name="submitSongAdd">
-				</form>
-				</div>
+		<div class="container" id="addMusic">
+			<form action="javascript:void(0)" method="post" id="addSongForm">
+
+				<label for="titleEntry">Song</label>
+				<input type="text" name="titleEntry">
+				<label for="artistEntry">Artist</label>
+				<input type="text" name="artistEntry">
+				<label for="albumEntry">Album</label>
+				<input type="text" name="albumEntry">
+				<input type="submit" name="submitSongAdd" value="Add Song">
+
+			</form>
+		</div>
 
 
 		<script src="songs.js"></script>
