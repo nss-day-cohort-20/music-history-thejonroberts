@@ -11,7 +11,6 @@ function parseSongData() {
 }
 
 // function outputSongs(songsArray) {
-// 	let songList = document.getElementById("songList");
 // //Write each song in array to DOM
 function outputSongs(songsArray) {
 	let songList = document.getElementById("songList");
