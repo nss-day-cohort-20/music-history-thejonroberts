@@ -18,11 +18,9 @@ nav {
 	display: flex;
 }
 
-.container #options {
-	border: 1px solid black;
-}
-
-.container #songs {
+.container #options,
+.container #songs,
+.container #addMusic {
 	border: 1px solid black;
 }
 
@@ -42,19 +40,21 @@ nav {
 }
 
 /*SONG LIST*/
-#songs {
+#songs,
+#addMusic {
 	background-color: #FEFAC0;
 	padding: 5px;
-	width: 65%;
 	list-style-type: decimal-leading-zero;
 	color: #785616;
 }
 
-#songs ul {
+#songs ul,
+#addMusic ul {
 	margin-left: 0;
 	padding: 0;
 }
-#songs li {
+#songs li,
+#addMusic li {
 	width: 100%;
 	padding-bottom: .4em;
 	display: inline-flex;
@@ -62,6 +62,20 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 }
+
+#songs {
+	width: 65%;
+}
+
+#addMusic {
+	width: 80%;
+	margin: 0 auto;
+}
+
+/**
+ * TODO: style inputs nicer
+ * Flex from song list is not quite what we want here.
+ */
 
 .hideButton {
 	border: 1px solid darkgrey;

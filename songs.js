@@ -10,7 +10,6 @@ function parseSongData() {
 	outputSongs(data.song);
 }
 
-// function outputSongs(songsArray) {
 // //Write each song in array to DOM
 function outputSongs(songsArray) {
 	let songList = document.getElementById("songList");
@@ -26,18 +25,18 @@ function outputSongs(songsArray) {
 	});
 }
 
-let hideButtons = document.getElementsByClassName("hideButton");
-console.log('hideButtons', hideButtons);
-let songListIem = document.getElementsByClassName("songListItem");
+// let hideButtons = document.getElementsByClassName("hideButton");
+// console.log('hideButtons', hideButtons);
+// let songListIem = document.getElementsByClassName("songListItem");
 
-function addHideClass(i) {
-		console.log('classhide', songListIem[i]);
-	};
+// function addHideClass(i) {
+// 		console.log('classhide', songListIem[i]);
+// 	};
 
-for (var i = 0; i < hideButtons.length; i++) {
-	hideButtons[i].addEventListener("click", addHideClass);
-	console.log('buttons added?');
-}
+// for (var i = 0; i < hideButtons.length; i++) {
+// 	hideButtons[i].addEventListener("click", addHideClass);
+// 	console.log('buttons added?');
+// }
 
 //set up event listeners for completed request and aborted request
 getSongData.addEventListener("load", parseSongData);
