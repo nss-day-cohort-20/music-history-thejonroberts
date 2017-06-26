@@ -50,15 +50,6 @@ nav {
 	color: #785616;
 }
 
-
-
-/*JS writes h1 and p tags to break up track list li's into lines;
-these rules align them within the #songs container*/
-/*#songs {
-	display: inline-flex;
-	justify-content: space-between;
-}*/
-
 #songs li {
 	width: 100%;
 	padding-bottom: .4em;
@@ -82,8 +73,9 @@ span {
 	flex-grow: 1;
 }
 
-
-
+.album {
+	font-style: oblique;
+}
 /*CONTAINER CLASSES: for dividing/centering fullwidth vs colums*/
 .fullwidth {
 	width: 95%;
