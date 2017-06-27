@@ -29,7 +29,7 @@ nav {
 }
 
 .container legend {
-	float: left;
+	display: block;
 }
 
 #options {

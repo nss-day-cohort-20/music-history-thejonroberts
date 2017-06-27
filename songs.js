@@ -84,7 +84,7 @@ listMusicAnchor.addEventListener("click", function() {
 //DOM - DATA //
 ///////////////
 
-//add new songs from user
+//add new songs from user input
 let addSongForm = document.getElementById("addSongForm");
 addSongForm.addEventListener("submit", function() {
 	//make new song object from user and push to array
