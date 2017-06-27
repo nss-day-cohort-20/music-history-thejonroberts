@@ -1,49 +1,113 @@
-// // Use JavaScript arrays, loops, and innerHTML to show the music you love.
-
-// Use JavaScript to create a list of songs in the index.html file for your Music History project. Download the songs.js file, which contains an array of strings with song information.
-
-// Add one song to the beginning and the end of the array.
-// Loop over the array, and remove any words or characters that obviously don't belong.
-// Find and replace the > character in each item with a - character.
-// Add each string to the DOM in index.html in the main content area.
-// Example output:
-
-// {Song name} by {Artist} on the album {Album}
-
-// {Song name} by {Artist} on the album {Album}
-
-// ...
-// ----=========------end of requirements
-
-//Declare array songs - from given file
-var songs = [];
-songs[songs.length] = "Legs > by Z*ZTop on the album Eliminator";
-songs[songs.length] = "The Logical Song > by Supertr@amp on the album Breakfast in America";
-songs[songs.length] = "Another Brick in the Wall > by Pink Floyd on the album The Wall";
-songs[songs.length] = "Welco(me to the Jungle > by Guns & Roses on the album Appetite for Destruction";
-songs[songs.length] = "Ironi!c > by Alanis Moris*ette on the album Jagged Little Pill";
-//add song to beginning of array songs
-songs.unshift("Capri Pants > by Bikini Kill on the album Reject All American");
-//add song to end of array songs
-songs.push("I am a Scientist > by Guided by Voices on the album Bee Thousand");
-// console.log(songs);
-
-//Declare DOM html element for song list:
-var songList = document.getElementById("songs");
-// console.log(songList);
-// console.log(songs);
-
-//loop through songs array to put songs list into html:
-for (var i = 0; i < songs.length; i++) {
-	//remove replace special characters (with proper html tags where needed)
-	songs[i] = songs[i].replace(">", "</h1><p>");
-	songs[i] = songs[i].replace("*", "");
-	songs[i] = songs[i].replace("@", "a");
-	songs[i] = songs[i].replace("(", "");
-	songs[i] = songs[i].replace("&", "&amp;");
-	songs[i] = songs[i].replace("!", "");
-	//write songs to DOM:
-	songList.innerHTML += `<li><h1>${songs[i]}</p></li>`;
+let allSongsArr = {};
+/////////////////////
+//XMR declarations //
+/////////////////////
+let getSongData = new XMLHttpRequest();
+//XMR Handlers
+function dataRequestFail() {
+	console.log('An error occured while transferrring the data');
 }
-// console.log(songs);
-// console.log(songList);
+function parseSongData() {
+	allSongsArr = JSON.parse(event.target.responseText).music;
+	outputSongs(allSongsArr);
+}
+/////////////////////
+//DOM Modification //
+/////////////////////
+
+//Write each song in array
+function outputSongs(songsArray) {
+	let songList = document.getElementById("songList");
+	songsArray.forEach(function(song) {
+		let listItem = document.createElement("li");
+		listItem.setAttribute("class", "songListItem");
+		listItem.innerHTML += `<button class="hideButton"> - </button>
+								<span class="title">${song.title}&nbsp;</span>
+								<span class="artist">${song.artist}&nbsp;</span>
+								from&nbsp;
+								<span class="album">${song.album}</span>`;
+		songList.appendChild(listItem);
+	});
+}
+//Clear Songs List (run before new output)
+function clearListSongsDOM() {
+	let songList = document.getElementById("songList");
+	while( songList.hasChildNodes() ) {
+		songList.removeChild(songList.lastChild);
+	}
+}
+//remove add notification
+function removeUserAddNotification() {
+	if( document.getElementById("addNotification") !== null ) {
+		let addNotification = document.getElementById("addNotification");
+		addNotification.parentNode.removeChild(addNotification.parentNode.lastChild);
+	}
+}
+//notify user of add success
+function userAddNotification(newSong) {
+		removeUserAddNotification();
+		let addButton = document.getElementById("submitSongAdd");
+		let addNotification = document.createElement("p");
+		addNotification.setAttribute("id", "addNotification");
+		addNotification.innerHTML = `<span class="title">${newSong.title}&nbsp;</span>by
+								<span class="artist">${newSong.artist}&nbsp;</span>
+								from&nbsp;<span class="album">${newSong.album}&nbsp;</span> was added.`;
+		addButton.parentNode.appendChild(addNotification);
+}
+
+/////////////////////////////
+//EVENT Listeners/Handlers //
+/////////////////////////////
+
+//DOM - PAGE NAVIGATION
+function showOnlyWrapper(id) {
+	let allPageWrappers = document.querySelectorAll(".pageWrapper");
+	allPageWrappers.forEach( function(div) {
+		div.classList.add("hidden")
+	});
+	let targetedPage = document.getElementById(id);
+	targetedPage.classList.remove("hidden");
+}
+//handlers for link clicks - hide other wrappers, show desired wrapper (css .hidden rules applied/removed)
+let addMusicAnchor = document.getElementById("addMusicAnchor");
+addMusicAnchor.addEventListener("click", function() {
+	showOnlyWrapper("addMusicWrapper");
+})
+let listMusicAnchor = document.getElementById("listMusicAnchor");
+listMusicAnchor.addEventListener("click", function() {
+	clearListSongsDOM();
+	removeUserAddNotification();
+	outputSongs(allSongsArr);
+	showOnlyWrapper("viewMusicWrapper");
+})
+///////////////
+//DOM - DATA //
+///////////////
+
+//add new songs from user input
+let addSongForm = document.getElementById("addSongForm");
+addSongForm.addEventListener("submit", function() {
+	//make new song object from user and push to array
+	let songObject = {}
+	songObject.title = document.getElementById("titleEntry").value;
+	songObject.artist = document.getElementById("artistEntry").value;
+	songObject.album = document.getElementById("albumEntry").value;
+	allSongsArr.push(songObject);
+	userAddNotification(songObject);
+})
+//////////////////
+//XMR Execution //
+//////////////////
+
+//set up event listeners for completed request and aborted request
+getSongData.addEventListener("load", parseSongData);
+getSongData.addEventListener("error", dataRequestFail);
+//tell it which http ver to use
+getSongData.open("GET", "music.json");
+getSongData.send();
+
+
+
+
+
+
