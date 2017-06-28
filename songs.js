@@ -3,12 +3,13 @@ let allSongsArr = {};
 //XMR declarations //
 /////////////////////
 let getSongData = new XMLHttpRequest();
+let getMoreSongData = new XMLHttpRequest();
 //XMR Handlers
 function dataRequestFail() {
 	console.log('An error occured while transferrring the data');
 }
 function parseSongData() {
-	allSongsArr = JSON.parse(event.target.responseText).music;
+	allSongsArr = JSON.parse(event.target.responseText).music;  //+=?
 	outputSongs(allSongsArr);
 }
 /////////////////////
@@ -28,7 +29,20 @@ function outputSongs(songsArray) {
 								<span class="album">${song.album}</span>`;
 		songList.appendChild(listItem);
 	});
-}
+	//add "More" button to dom list if it does not exist (it should after first page load)
+	let moreButton = document.getElementById("moreMusicButton");
+	if (moreButton === null) {
+		moreButton = document.createElement("button");
+		moreButton.setAttribute("id", "moreMusicButton")
+		moreButton.innerHTML = "More";
+		songList.appendChild(moreButton);
+		}
+	moreButton.addEventListener("click", function() {
+		getMoreSongData.open("GET", "moreMusic.json");
+		getMoreSongData.send();
+		moreButton.setAttribute("class", "hidden");
+	});
+	}
 //Clear Songs List (run before new output)
 function clearListSongsDOM() {
 	let songList = document.getElementById("songList");
@@ -105,6 +119,13 @@ getSongData.addEventListener("error", dataRequestFail);
 //tell it which http ver to use
 getSongData.open("GET", "music.json");
 getSongData.send();
+
+getMoreSongData.addEventListener("load", parseSongData); //promise would be nice here?
+getMoreSongData.addEventListener("error", dataRequestFail);
+//tell it which http ver to use
+
+// getMoreSongData.open("GET", "moreMusic.json");
+// getMoreSongData.send();
 
 
 
