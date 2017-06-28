@@ -8,17 +8,30 @@ let getMoreSongData = new XMLHttpRequest();
 function dataRequestFail() {
 	console.log('An error occured while transferrring the data');
 }
+//TODO: when second file loaded on "more" click, append to this array
+//rather than overwriting.
 function parseSongData() {
-	allSongsArr = JSON.parse(event.target.responseText).music;  //+=?
+	allSongsArr = JSON.parse(event.target.responseText).music;
 	outputSongs(allSongsArr);
 }
 /////////////////////
 //DOM Modification //
 /////////////////////
 
+function moreButtonCreation(moreButton) {
+	if (moreButton === null) {  //only needs to be created once
+		moreButton = document.createElement("button");
+		moreButton.setAttribute("id", "moreMusicButton")
+		moreButton.innerHTML = "More >";
+		songList.appendChild(moreButton);
+		moreButtonHandler(moreButton);
+		}
+	}
+
 //Write each song in array
 function outputSongs(songsArray) {
 	let songList = document.getElementById("songList");
+	//append song objects from array songsarray to songlist, each with remove buttons
 	songsArray.forEach(function(song) {
 		let listItem = document.createElement("li");
 		listItem.setAttribute("class", "songListItem");
@@ -29,20 +42,11 @@ function outputSongs(songsArray) {
 								<span class="album">${song.album}</span>`;
 		songList.appendChild(listItem);
 	});
-	//add "More" button to dom list if it does not exist (it should after first page load)
+	removeButtonHandlers();
+	//add "More" button to dom list
 	let moreButton = document.getElementById("moreMusicButton");
-	if (moreButton === null) {
-		moreButton = document.createElement("button");
-		moreButton.setAttribute("id", "moreMusicButton")
-		moreButton.innerHTML = "More";
-		songList.appendChild(moreButton);
-		}
-	moreButton.addEventListener("click", function() {
-		getMoreSongData.open("GET", "moreMusic.json");
-		getMoreSongData.send();
-		moreButton.setAttribute("class", "hidden");
-	});
-	}
+	moreButtonCreation(moreButton);
+}
 //Clear Songs List (run before new output)
 function clearListSongsDOM() {
 	let songList = document.getElementById("songList");
@@ -94,6 +98,23 @@ listMusicAnchor.addEventListener("click", function() {
 	outputSongs(allSongsArr);
 	showOnlyWrapper("viewMusicWrapper");
 })
+
+function moreButtonHandler(moreButton) {
+	moreButton.addEventListener("click", function() {
+		getMoreSongData.open("GET", "moreMusic.json");
+		getMoreSongData.send();
+		moreButton.setAttribute("class", "hidden");
+		});
+}
+
+function removeButtonHandlers() {
+		let removeButtons = document.querySelectorAll(".hideButton");
+		removeButtons.forEach(function (button) {
+		button.addEventListener("click", function() {
+		event.target.parentNode.remove();
+		});
+	})
+}
 ///////////////
 //DOM - DATA //
 ///////////////
@@ -116,16 +137,13 @@ addSongForm.addEventListener("submit", function() {
 //set up event listeners for completed request and aborted request
 getSongData.addEventListener("load", parseSongData);
 getSongData.addEventListener("error", dataRequestFail);
-//tell it which http ver to use
+
 getSongData.open("GET", "music.json");
 getSongData.send();
 
-getMoreSongData.addEventListener("load", parseSongData); //promise would be nice here?
+getMoreSongData.addEventListener("load", parseSongData);
 getMoreSongData.addEventListener("error", dataRequestFail);
-//tell it which http ver to use
-
-// getMoreSongData.open("GET", "moreMusic.json");
-// getMoreSongData.send();
+//requested in moreButtonHandler
 
 
 
