@@ -1,3 +1,5 @@
+// let $ = require('jquery');
+
 let allSongsArr = {};
 /////////////////////
 //XMR declarations //
@@ -101,7 +103,7 @@ listMusicAnchor.addEventListener("click", function() {
 
 function moreButtonHandler(moreButton) {
 	moreButton.addEventListener("click", function() {
-		getMoreSongData.open("GET", "moreMusic.json");
+		getMoreSongData.open("GET", "./data/moreMusic.json");
 		getMoreSongData.send();
 		moreButton.setAttribute("class", "hidden");
 		});
@@ -138,7 +140,7 @@ addSongForm.addEventListener("submit", function() {
 getSongData.addEventListener("load", parseSongData);
 getSongData.addEventListener("error", dataRequestFail);
 
-getSongData.open("GET", "music.json");
+getSongData.open("GET", "./data/music.json");
 getSongData.send();
 
 getMoreSongData.addEventListener("load", parseSongData);
