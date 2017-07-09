@@ -1,61 +1,74 @@
 'use strict';
 
-// let $ = require('jquery');
+let $ = require('jquery');
 
 let allSongsArr = {};
-/////////////////////
-//XMR declarations //
-/////////////////////
-let getSongData = new XMLHttpRequest();
-let getMoreSongData = new XMLHttpRequest();
-//XMR Handlers
-function dataRequestFail() {
-	console.log('An error occured while transferrring the data');
+
+//DOM - PAGE NAVIGATION
+function showOnlyWrapper(id) {
+	let allPageWrappers = document.querySelectorAll(".pageWrapper");
+	allPageWrappers.forEach( function(div) {
+		div.classList.add("hidden");
+	});
+	let targetedPage = document.getElementById(id);
+	targetedPage.classList.remove("hidden");
 }
+//handlers for link clicks - hide other wrappers, show desired wrapper (css .hidden rules applied/removed)
+let addMusicAnchor = document.getElementById("addMusicAnchor");
+addMusicAnchor.addEventListener("click", function() {
+	showOnlyWrapper("addMusicWrapper");
+});
+
+let listMusicAnchor = document.getElementById("listMusicAnchor");
+listMusicAnchor.addEventListener("click", function() {
+	clearListSongsDOM();
+	removeUserAddNotification();
+	outputSongs(allSongsArr);
+	showOnlyWrapper("viewMusicWrapper");
+});
 //TODO: when second file loaded on "more" click, append to this array
 //rather than overwriting.
-function parseSongData() {
-	allSongsArr = JSON.parse(event.target.responseText).music;
-	outputSongs(allSongsArr);
-}
+
 /////////////////////
 //DOM Modification //
 /////////////////////
 
-function moreButtonCreation(moreButton) {
-	if (moreButton === null) {  //only needs to be created once
-		moreButton = document.createElement("button");
-		moreButton.setAttribute("id", "moreMusicButton");
-		moreButton.innerHTML = "More >";
-		// songList.appendChild(moreButton);
-		moreButtonHandler(moreButton);
-		}
-	}
-
 //Write each song in array
 function outputSongs(songsArray) {
-	let songList = document.getElementById("songList");
+	// let songList = document.getElementById("songList");
 	//append song objects from array songsarray to songlist, each with remove buttons
-	songsArray.forEach(function(song) {
-		let listItem = document.createElement("li");
-		listItem.setAttribute("class", "songListItem");
-		listItem.innerHTML += `<button class="hideButton"> - </button>
+	songsArray.forEach( function(song) {
+		let $listItem = $("<li></li>");
+		$listItem.addClass("songListItem");
+		$listItem.html(`<button class="hideButton"> - </button>
 								<span class="title">${song.title}&nbsp;</span>
 								<span class="artist">${song.artist}&nbsp;</span>
 								from&nbsp;
-								<span class="album">${song.album}</span>`;
-		songList.appendChild(listItem);
+								<span class="album">${song.album}</span>`);
+		$("#songList").append($listItem);
 	});
+
 	removeButtonHandlers();
 	//add "More" button to dom list
-	let moreButton = document.getElementById("moreMusicButton");
-	moreButtonCreation(moreButton);
+	moreButtonCreation();
+}
+
+function moreButtonCreation() {
+	console.log('$("#moreButton")', $("#moreButton") );
+	if ( $("#moreButton") === null ) {  //only needs to be created once
+		let $moreButton = $("<button></button>");
+		$moreButton.attr("#moreMusicButton");
+		$moreButton.html = "More >";
+		$('#songList').append($moreButton);
+		moreButtonHandler($moreButton);
+		console.log('$("#moreButton")', $("#moreButton") );
+	}
 }
 //Clear Songs List (run before new output)
 function clearListSongsDOM() {
 	let songList = document.getElementById("songList");
 	while( songList.hasChildNodes() ) {
-		songList.removeChild(songList.lastChild);
+		$("#songList").children().remove();
 	}
 }
 //remove add notification
@@ -80,37 +93,6 @@ function userAddNotification(newSong) {
 /////////////////////////////
 //EVENT Listeners/Handlers //
 /////////////////////////////
-
-//DOM - PAGE NAVIGATION
-function showOnlyWrapper(id) {
-	let allPageWrappers = document.querySelectorAll(".pageWrapper");
-	allPageWrappers.forEach( function(div) {
-		div.classList.add("hidden");
-	});
-	let targetedPage = document.getElementById(id);
-	targetedPage.classList.remove("hidden");
-}
-//handlers for link clicks - hide other wrappers, show desired wrapper (css .hidden rules applied/removed)
-let addMusicAnchor = document.getElementById("addMusicAnchor");
-addMusicAnchor.addEventListener("click", function() {
-	showOnlyWrapper("addMusicWrapper");
-});
-
-let listMusicAnchor = document.getElementById("listMusicAnchor");
-listMusicAnchor.addEventListener("click", function() {
-	clearListSongsDOM();
-	removeUserAddNotification();
-	outputSongs(allSongsArr);
-	showOnlyWrapper("viewMusicWrapper");
-});
-
-function moreButtonHandler(moreButton) {
-	moreButton.addEventListener("click", function() {
-		getMoreSongData.open("GET", "./data/moreMusic.json");
-		getMoreSongData.send();
-		moreButton.setAttribute("class", "hidden");
-		});
-}
 
 function removeButtonHandlers() {
 		let removeButtons = document.querySelectorAll(".hideButton");
@@ -139,16 +121,30 @@ addSongForm.addEventListener("submit", function() {
 //XMR Execution //
 //////////////////
 
-//set up event listeners for completed request and aborted request
-getSongData.addEventListener("load", parseSongData);
-getSongData.addEventListener("error", dataRequestFail);
+let getSongData = new XMLHttpRequest();
+let getMoreSongData = new XMLHttpRequest();
 
-getSongData.open("GET", "./data/music.json");
-getSongData.send();
+function moreButtonHandler(moreButton) {
+	moreButton.addEventListener("click", function() {
+		getMoreSongData.open("GET", "./data/moreMusic.json");
+		getMoreSongData.send();
+		moreButton.setAttribute("class", "hidden");
+		});
+}
 
-getMoreSongData.addEventListener("load", parseSongData);
-getMoreSongData.addEventListener("error", dataRequestFail);
-//requested in moreButtonHandler
+ $.ajax({
+	url: "../data/music.json"
+	})
+	.done( function(data) {
+		outputSongs(data.music);
+	})
+	.fail(function(error) {
+		console.log('!', error.responseText);
+	});
+
+function dataRequestFail() {
+	console.log('An error occured while transferrring the data');
+}
 
 
 

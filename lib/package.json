@@ -2,7 +2,7 @@
   "name": "lib",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "Gruntfile.js",
   "dependencies": {
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
