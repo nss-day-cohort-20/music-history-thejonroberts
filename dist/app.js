@@ -39,7 +39,7 @@ function outputSongs(songsArray) {
 	// let songList = document.getElementById("songList");
 	//append song objects from array songsarray to songlist, each with remove buttons
 	songsArray.forEach( function(song) {
-		let $listItem = $("<li></li>");
+		let $listItem = $("<li/>");
 		$listItem.addClass("songListItem");
 		$listItem.html(`<button class="hideButton"> - </button>
 								<span class="title">${song.title}&nbsp;</span>
@@ -49,27 +49,26 @@ function outputSongs(songsArray) {
 		$("#songList").append($listItem);
 	});
 
-	removeButtonHandlers();
 	//add "More" button to dom list
 	moreButtonCreation();
+
+	removeButtonHandlers();
 }
 
 function moreButtonCreation() {
-	console.log('$("#moreButton")', $("#moreButton") );
-	if ( $("#moreButton") === {} ) {  //only needs to be created once
-		let $moreButton = $("<button></button>");
-		$moreButton.attr("#moreMusicButton");
-		$moreButton.html = "More >";
+	if ( $("#moreMusicButton") === null || undefined || {} ) {  //only needs to be created once
+		let $moreButton = $("<button/>");
+		$moreButton.attr("id", "moreMusicButton");
+		$moreButton.html("More >");
 		$('#songList').append($moreButton);
 		moreButtonHandler($moreButton);
-		console.log('$("#moreButton")', $("#moreButton") );
-		}
 	}
+}
 //Clear Songs List (run before new output)
 function clearListSongsDOM() {
 	let songList = document.getElementById("songList");
 	while( songList.hasChildNodes() ) {
-		$("#songList").children().remove();
+		$("#songList").empty();
 	}
 }
 //remove add notification
@@ -96,25 +95,24 @@ function userAddNotification(newSong) {
 /////////////////////////////
 
 function removeButtonHandlers() {
-		let removeButtons = document.querySelectorAll(".hideButton");
-		removeButtons.forEach(function (button) {
-		button.addEventListener("click", function() {
-		event.target.parentNode.remove();
+		let $removeButtons = $(".hideButton");
+		console.log('$removeButtons', $removeButtons);
+		$removeButtons.click( function() {
+			this.parentNode.remove();
 		});
-	});
 }
 ///////////////
 //DOM - DATA //
 ///////////////
 
 //add new songs from user input
-let addSongForm = document.getElementById("addSongForm");
-addSongForm.addEventListener("submit", function() {
+let addSongForm = $("#addSongForm");
+addSongForm.submit( function() {
 	//make new song object from user and push to array
 	let songObject = {};
-	songObject.title = document.getElementById("titleEntry").value;
-	songObject.artist = document.getElementById("artistEntry").value;
-	songObject.album = document.getElementById("albumEntry").value;
+	songObject.title = $("#titleEntry").value;
+	songObject.artist = $("#artistEntry").value;
+	songObject.album = $("#albumEntry").value;
 	allSongsArr.push(songObject);
 	userAddNotification(songObject);
 });
@@ -126,10 +124,10 @@ let getSongData = new XMLHttpRequest();
 let getMoreSongData = new XMLHttpRequest();
 
 function moreButtonHandler(moreButton) {
-	moreButton.addEventListener("click", function() {
+	moreButton.click( function() {
 		getMoreSongData.open("GET", "./data/moreMusic.json");
 		getMoreSongData.send();
-		moreButton.setAttribute("class", "hidden");
+		moreButton.addClass("hidden");
 		});
 }
 
