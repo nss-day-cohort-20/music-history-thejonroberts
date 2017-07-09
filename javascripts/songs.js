@@ -2,29 +2,27 @@
 
 let $ = require('jquery');
 
-let allSongsArr = {};
+let allSongsArr = [];
 
 //DOM - PAGE NAVIGATION
 function showOnlyWrapper(id) {
-	let allPageWrappers = document.querySelectorAll(".pageWrapper");
-	allPageWrappers.forEach( function(div) {
-		div.classList.add("hidden");
-	});
-	let targetedPage = document.getElementById(id);
-	targetedPage.classList.remove("hidden");
+	let $allPageWrappers = $(".pageWrapper");
+	$allPageWrappers.addClass("hidden");
+	let $targetedPage = $(id);
+	$targetedPage.removeClass("hidden");
 }
 //handlers for link clicks - hide other wrappers, show desired wrapper (css .hidden rules applied/removed)
-let addMusicAnchor = document.getElementById("addMusicAnchor");
-addMusicAnchor.addEventListener("click", function() {
-	showOnlyWrapper("addMusicWrapper");
+let $addMusicAnchor = $("#addMusicAnchor");
+$addMusicAnchor.click( function() {
+	showOnlyWrapper("#addMusicWrapper");
 });
 
-let listMusicAnchor = document.getElementById("listMusicAnchor");
-listMusicAnchor.addEventListener("click", function() {
-	clearListSongsDOM();
+let listMusicAnchor = $("#listMusicAnchor");
+listMusicAnchor.click( function() {
+	// clearListSongsDOM();
 	removeUserAddNotification();
 	outputSongs(allSongsArr);
-	showOnlyWrapper("viewMusicWrapper");
+	showOnlyWrapper("#viewMusicWrapper");
 });
 //TODO: when second file loaded on "more" click, append to this array
 //rather than overwriting.
@@ -35,8 +33,8 @@ listMusicAnchor.addEventListener("click", function() {
 
 //Write each song in array
 function outputSongs(songsArray) {
-	// let songList = document.getElementById("songList");
 	//append song objects from array songsarray to songlist, each with remove buttons
+	clearListSongsDOM();
 	songsArray.forEach( function(song) {
 		let $listItem = $("<li/>");
 		$listItem.addClass("songListItem");
@@ -109,9 +107,9 @@ let addSongForm = $("#addSongForm");
 addSongForm.submit( function() {
 	//make new song object from user and push to array
 	let songObject = {};
-	songObject.title = $("#titleEntry").value;
-	songObject.artist = $("#artistEntry").value;
-	songObject.album = $("#albumEntry").value;
+	songObject.title = $("#titleEntry").val();
+	songObject.artist = $("#artistEntry").val();
+	songObject.album = $("#albumEntry").val();
 	allSongsArr.push(songObject);
 	userAddNotification(songObject);
 });
@@ -134,7 +132,10 @@ function moreButtonHandler(moreButton) {
 	url: "../data/music.json"
 	})
 	.done( function(data) {
-		outputSongs(data.music);
+		$.each(data.music, function() {
+			allSongsArr.push(this);
+		});
+		outputSongs(allSongsArr);
 	})
 	.fail(function(error) {
 		console.log('!', error.responseText);
