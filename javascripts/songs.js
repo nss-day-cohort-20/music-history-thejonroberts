@@ -45,22 +45,9 @@ function outputSongs(songsArray) {
 								<span class="album">${song.album}</span>`);
 		$("#songList").append($listItem);
 	});
-
-	//add "More" button to dom list
-	moreButtonCreation();
-
 	removeButtonHandlers();
 }
 
-function moreButtonCreation() {
-	if ( $("#moreMusicButton") === null || undefined || {} ) {  //only needs to be created once
-		let $moreButton = $("<button/>");
-		$moreButton.attr("id", "moreMusicButton");
-		$moreButton.html("More >");
-		$('#songList').append($moreButton);
-		moreButtonHandler($moreButton);
-	}
-}
 //Clear Songs List (run before new output)
 function clearListSongsDOM() {
 	let songList = document.getElementById("songList");
@@ -117,16 +104,26 @@ addSongForm.submit( function() {
 //XMR Execution //
 //////////////////
 
-let getSongData = new XMLHttpRequest();
-let getMoreSongData = new XMLHttpRequest();
+// let getSongData = new XMLHttpRequest();
+// let getMoreSongData = new XMLHttpRequest();
 
-function moreButtonHandler(moreButton) {
-	moreButton.click( function() {
-		getMoreSongData.open("GET", "./data/moreMusic.json");
-		getMoreSongData.send();
-		moreButton.addClass("hidden");
-		});
-}
+function moreButtonHandler() {
+		let $moreButton = $("#moreMusicButton");
+		$moreButton.addClass("hidden");
+		 $.ajax({
+			url: "../data/moreMusic.json"
+			})
+			.done( function(data) {
+				$.each(data.music, function() {
+					allSongsArr.push(this);
+				});
+				outputSongs(allSongsArr);
+			})
+			.fail( function(error) {
+				console.log('!', error.responseText);
+			});
+		// console.log('moreButton', moreButton);
+		}
 
  $.ajax({
 	url: "../data/music.json"
@@ -135,6 +132,7 @@ function moreButtonHandler(moreButton) {
 		$.each(data.music, function() {
 			allSongsArr.push(this);
 		});
+		$("#moreMusicButton").click( moreButtonHandler);
 		outputSongs(allSongsArr);
 	})
 	.fail(function(error) {
