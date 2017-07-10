@@ -17,15 +17,12 @@ $addMusicAnchor.click( function() {
 	showOnlyWrapper("#addMusicWrapper");
 });
 
-let listMusicAnchor = $("#listMusicAnchor");
-listMusicAnchor.click( function() {
-	// clearListSongsDOM();
+let $listMusicAnchor = $("#listMusicAnchor");
+$listMusicAnchor.click( function() {
 	removeUserAddNotification();
 	outputSongs(allSongsArr);
 	showOnlyWrapper("#viewMusicWrapper");
 });
-//TODO: when second file loaded on "more" click, append to this array
-//rather than overwriting.
 
 /////////////////////
 //DOM Modification //
@@ -33,7 +30,6 @@ listMusicAnchor.click( function() {
 
 //Write each song in array
 function outputSongs(songsArray) {
-	//append song objects from array songsarray to songlist, each with remove buttons
 	clearListSongsDOM();
 	songsArray.forEach( function(song) {
 		let $listItem = $("<li/>");
@@ -50,13 +46,11 @@ function outputSongs(songsArray) {
 
 //Clear Songs List (run before new output)
 function clearListSongsDOM() {
-	let songList = document.getElementById("songList");
-	while( songList.hasChildNodes() ) {
-		$("#songList").empty();
-	}
+$("#songList").empty();
 }
 //remove add notification
 function removeUserAddNotification() {
+	// $("addNotification").remove();
 	if( document.getElementById("addNotification") !== null ) {
 		let addNotification = document.getElementById("addNotification");
 		addNotification.parentNode.removeChild(addNotification.parentNode.lastChild);
@@ -65,13 +59,13 @@ function removeUserAddNotification() {
 //notify user of add success
 function userAddNotification(newSong) {
 		removeUserAddNotification();
-		let addButton = document.getElementById("submitSongAdd");
-		let addNotification = document.createElement("p");
-		addNotification.setAttribute("id", "addNotification");
-		addNotification.innerHTML = `<span class="title">${newSong.title}&nbsp;</span>by
+		let $addButton = $("#submitSongAdd");
+		let $addNotification = $("<p/>");
+		$addNotification.attr("id", "addNotification");
+		$addNotification.html(`<span class="title">${newSong.title}&nbsp;</span>by
 								<span class="artist">${newSong.artist}&nbsp;</span>
-								from&nbsp;<span class="album">${newSong.album}&nbsp;</span> was added.`;
-		addButton.parentNode.appendChild(addNotification);
+								from&nbsp;<span class="album">${newSong.album}&nbsp;</span> was added.`);
+		$addButton.after($addNotification);
 }
 
 /////////////////////////////
@@ -80,7 +74,6 @@ function userAddNotification(newSong) {
 
 function removeButtonHandlers() {
 		let $removeButtons = $(".hideButton");
-		console.log('$removeButtons', $removeButtons);
 		$removeButtons.click( function() {
 			this.parentNode.remove();
 		});
@@ -90,8 +83,8 @@ function removeButtonHandlers() {
 ///////////////
 
 //add new songs from user input
-let addSongForm = $("#addSongForm");
-addSongForm.submit( function() {
+let $addSongForm = $("#addSongForm");
+$addSongForm.submit( function() {
 	//make new song object from user and push to array
 	let songObject = {};
 	songObject.title = $("#titleEntry").val();
@@ -99,13 +92,11 @@ addSongForm.submit( function() {
 	songObject.album = $("#albumEntry").val();
 	allSongsArr.push(songObject);
 	userAddNotification(songObject);
+	console.log('allSongsArr', allSongsArr);
 });
 //////////////////
 //XMR Execution //
 //////////////////
-
-// let getSongData = new XMLHttpRequest();
-// let getMoreSongData = new XMLHttpRequest();
 
 function moreButtonHandler() {
 		let $moreButton = $("#moreMusicButton");
@@ -122,7 +113,6 @@ function moreButtonHandler() {
 			.fail( function(error) {
 				console.log('!', error.responseText);
 			});
-		// console.log('moreButton', moreButton);
 		}
 
  $.ajax({
