@@ -2,7 +2,6 @@
 'use strict';
 
 let $ = require('jquery');
-
 let allSongsArr = [];
 
 //DOM - PAGE NAVIGATION
@@ -28,7 +27,6 @@ $listMusicAnchor.click( function() {
 /////////////////////
 //DOM Modification //
 /////////////////////
-
 //Write each song in array
 function outputSongs(songsArray) {
 	clearListSongsDOM();
@@ -51,11 +49,7 @@ $("#songList").empty();
 }
 //remove add notification
 function removeUserAddNotification() {
-	// $("addNotification").remove();
-	if( document.getElementById("addNotification") !== null ) {
-		let addNotification = document.getElementById("addNotification");
-		addNotification.parentNode.removeChild(addNotification.parentNode.lastChild);
-	}
+	$("#addNotification").remove();
 }
 //notify user of add success
 function userAddNotification(newSong) {
@@ -68,11 +62,9 @@ function userAddNotification(newSong) {
 								from&nbsp;<span class="album">${newSong.album}&nbsp;</span> was added.`);
 		$addButton.after($addNotification);
 }
-
 /////////////////////////////
 //EVENT Listeners/Handlers //
 /////////////////////////////
-
 function removeButtonHandlers() {
 		let $removeButtons = $(".hideButton");
 		$removeButtons.click( function() {
@@ -93,7 +85,6 @@ $addSongForm.submit( function() {
 	songObject.album = $("#albumEntry").val();
 	allSongsArr.push(songObject);
 	userAddNotification(songObject);
-	console.log('allSongsArr', allSongsArr);
 });
 //////////////////
 //XMR Execution //
@@ -129,16 +120,6 @@ function moreButtonHandler() {
 	.fail(function(error) {
 		console.log('!', error.responseText);
 	});
-
-function dataRequestFail() {
-	console.log('An error occured while transferrring the data');
-}
-
-
-
-
-
-
 
 },{"jquery":2}],2:[function(require,module,exports){
 /*!
