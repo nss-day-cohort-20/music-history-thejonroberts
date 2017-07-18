@@ -1,6 +1,9 @@
 'use strict';
 
 let $ = require('jquery');
+let factory = require('./song-factory');
+let songController = require('./song-controller');
+
 let allSongsArr = [];
 
 //DOM - PAGE NAVIGATION
@@ -28,6 +31,7 @@ $listMusicAnchor.click( function() {
 /////////////////////
 //Write each song in array
 function outputSongs(songsArray) {
+	console.log('outputSongs');
 	clearListSongsDOM();
 	songsArray.forEach( function(song) {
 		let $listItem = $("<li/>");
@@ -106,16 +110,18 @@ function moreButtonHandler() {
 			});
 		}
 
- $.ajax({
-	url: "../data/music.json"
-	})
-	.done( function(data) {
-		$.each(data.music, function() {
-			allSongsArr.push(this);
-		});
-		$("#moreMusicButton").click( moreButtonHandler);
-		outputSongs(allSongsArr);
-	})
-	.fail(function(error) {
-		console.log('!', error.responseText);
-	});
+
+songController.songsToDOM();
+// factory.getSongs()
+// 	.then( (songData) => {
+// 		console.log('getSongs', songData);
+// 		$.each(songData.music, function() {
+// 			allSongsArr.push(this);
+// 		});
+// 		console.log('allSongsArr', allSongsArr);
+// 		$("#moreMusicButton").click( moreButtonHandler);
+// 		outputSongs(allSongsArr);
+// 	})
+// 	.catch(function(error) {
+// 		console.log('!', error.responseText);
+// 	});
