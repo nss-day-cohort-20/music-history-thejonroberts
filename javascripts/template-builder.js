@@ -10,5 +10,6 @@ module.exports.songList = (songArray) => {
 };
 
 module.exports.notification = (songObj) => {
-	return songListTemplate( {song: songObj} );
+	console.log('notification', songObj);
+	return notificationTemplate( {song: songObj} );
 };

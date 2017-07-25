@@ -28,10 +28,12 @@ $("#listMusicAnchor").click( function() {
 
 //notify user of add success
 function userAddNotification(newSong) {
-		//remove any previous notification
-		$("#addNotification").empty();
-		let addNotification = templates.notification(newSong);
-		$("#submitSongAdd").after(addNotification);
+	console.log('newSong', newSong);
+	//remove any previous notification
+	$("#addNotification").empty();
+	let addNotification = templates.notification(newSong);
+	console.log('addNotification', addNotification);
+	$("#submitSongAdd").after(addNotification);
 }
 
 ///////////////
@@ -40,6 +42,7 @@ function userAddNotification(newSong) {
 
 //add new songs from user input
 $("#addSongForm").submit( function() {
+	// console.log('addSongEvent');
 	//make new song object from user and push to array
 	let songObject = {};
 	songObject.title = $("#titleEntry").val();
@@ -47,6 +50,7 @@ $("#addSongForm").submit( function() {
 	songObject.album = $("#albumEntry").val();
 	// factory.addSong();
 	// allSongsArr.push(songObject);
+	console.log('songObject', songObject);
 	userAddNotification(songObject);
 });
 
