@@ -1,5 +1,5 @@
 'use strict';
-//TODO ALIAS^^
+
 let $ = require('jquery');
 let factory = require('./song-factory');
 // let songController = require('./song-controller');

@@ -24,6 +24,21 @@
 			"artist": "Alanis Morisette",
 			"album": "Jagged Little Pill",
 			"title": "Ironic"
+		},
+		{
+			"artist": "Bikini Kill",
+			"album": "Reject All American",
+			"title": "Capri Pants"
+		},
+		{
+			"artist": "Guided by Voices",
+			"album": "Bee Thousand",
+			"title": "I am a Scientist"
+		},
+		{
+			"artist": "Built to Spill",
+			"album": "There's Nothing Wrong with Love",
+			"title": "Big Dipper"
 		}
 	]
 }

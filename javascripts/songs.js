@@ -94,21 +94,20 @@ $addSongForm.submit( function() {
 //////////////////
 
 function moreButtonHandler() {
-		let $moreButton = $("#moreMusicButton");
-		$moreButton.addClass("hidden");
-		 $.ajax({
-			url: "../data/moreMusic.json"
-			})
-			.done( function(data) {
-				$.each(data.music, function() {
-					allSongsArr.push(this);
-				});
-				outputSongs(allSongsArr);
-			})
-			.fail( function(error) {
-				console.log('!', error.responseText);
+	let $moreButton = $("#moreMusicButton");
+	$moreButton.addClass("hidden");
+	 factory.getMoreSongs()
+		.then( function(data) {
+			let allSongsArr = [];
+			$.each(data.music, function() {
+				allSongsArr.push(this);
 			});
-		}
+			songController.outputSongs(allSongsArr);
+		})
+		.catch( function(error) {
+			console.log('!', error.responseText);
+		});
+}
 
 
 songController.songsToDOM();
