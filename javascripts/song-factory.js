@@ -17,3 +17,18 @@ module.exports.getSongs = () => {
 	});
 };
 
+module.exports.addSong = (songFormObj) => {
+  return new Promise ( (resolve, reject) => {
+    // let currentUser = firebase.auth().currentUser.uid;
+    // songFormObj.uid = currentUser;
+    $.ajax({
+      url: '../data/music.json',
+      type: "POST",
+      data: JSON.stringify(songFormObj),
+      dataType: "json" //probably unecessary
+    }).done( (songId) => {
+      resolve(songId);
+    });
+  });
+};
+
