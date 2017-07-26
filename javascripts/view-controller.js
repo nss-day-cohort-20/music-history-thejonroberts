@@ -43,7 +43,6 @@ $("#addSongForm").submit( function() {
 
 //listeners for select dropdowns; call fns in song-filter.js
 $(document).on('change', '#artist-select', function() {
-	// console.log("$('#artist-select').val()", $('#artist-select').val());
 	filter.filterArtist( $('#artist-select').val() );
 });
 

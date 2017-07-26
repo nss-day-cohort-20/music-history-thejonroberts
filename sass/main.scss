@@ -16,12 +16,11 @@ nav {
 	justify-content: space-around;
 	align-content: space-around;
 	display: flex;
-}
-
-.pageWrapper #options,
-.pageWrapper #songs,
-.pageWrapper #addMusic {
-	border: 1px solid black;
+		#options,
+		#songs,
+		#addMusic {
+			border: 1px solid black;
+		}
 }
 
 .container > .halfwidth {
@@ -37,6 +36,11 @@ nav {
 	width: 25%;
 	justify-content: flex-start;
 	padding: 10px;
+		button {
+			height: 1.7em;
+			width: 75%;
+			justify-content: center;
+		}
 }
 
 /*SONG LIST*/
@@ -46,21 +50,18 @@ nav {
 	padding: 5px;
 	list-style-type: decimal-leading-zero;
 	color: #785616;
-}
-
-#songs ul,
-#addMusic ul {
-	margin-left: 0;
-	padding: 0;
-}
-#songs li,
-#addMusic li {
-	width: 100%;
-	padding-bottom: .4em;
-	display: inline-flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
+		ul {
+			margin-left: 0;
+			padding: 0;
+		}
+		li {
+			width: 100%;
+			padding-bottom: .4em;
+			display: inline-flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: center;
+		}
 }
 
 #songs {
@@ -76,7 +77,6 @@ nav {
  * TODO: style inputs nicer
  * Flex from song list is not quite what we want here.
  */
-
 
 .removeButton {
 	border: 1px solid darkgrey;
@@ -111,13 +111,6 @@ span {
 	width: 45%;
 	font-size: .8em;
 	display: inline-flex;
-}
-
-/*BUTTON STYLING*/
-#options button {
-	height: 1.7em;
-	width: 75%;
-	justify-content: center;
 }
 
 .hidden {
