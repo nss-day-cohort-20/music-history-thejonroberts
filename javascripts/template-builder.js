@@ -8,7 +8,7 @@ let selectTemplate = require('../templates/select-options.hbs');
 module.exports.songList = (songArray) => {
 	return songListTemplate( {songs: songArray} );
 };
-
+//notify user of successful add
 module.exports.notification = (songObj) => {
 	return notificationTemplate( {song: songObj} );
 };
