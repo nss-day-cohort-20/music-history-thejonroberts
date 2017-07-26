@@ -4,14 +4,16 @@ let $ = require('jquery');
 let factory = require('./song-factory');
 let templates = require('./template-builder');
 
-//Write each song in array
+//Write each song in array to list
 function outputSongs( songsArr ) {
 	$("#songList").empty();
 	let songList = templates.songList( songsArr );
 	$('#songList').html( songList );
 	removeButtonHandlers();
+	let selectOptions = templates.populateSelect(songsArr);
+	$('#select-options').html(selectOptions);
 }
-
+// on remove click, remove song from array and redraw song list
 function removeButtonHandlers() {
 	$(".removeButton").click( function() {
 		let index = $(this).parents('li').data('song-id');
@@ -19,7 +21,7 @@ function removeButtonHandlers() {
 		module.exports.songsToDOM();
 	});
 }
-
+//make outputSongs() available outside module
 module.exports.songsToDOM = () => {
 	outputSongs( factory.storedSongs );
 };
