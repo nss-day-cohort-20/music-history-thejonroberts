@@ -1,14 +1,16 @@
 	<!-- ARTIST DROP -->
 	<legend>Artist:</legend>
 	<select id="artist-select" class="fullwidth">
+	<option value="All" selected>All</option>
 		{{#each songs}}
-			<option>{{artist}}</option>
+			<option value="{{artist}}">{{artist}}</option>
 		{{/each}}
 	</select>
 	<!-- ALBUM DROP -->
 	<legend>Album:</legend>
 	<select id="album-select" class="fullwidth">
+		<option value="All" selected>All</option>
 		{{#each songs}}
-			<option>{{album}}</option>
+			<option value="{{album}}">{{album}}</option>
 		{{/each}}
 	</select>

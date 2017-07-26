@@ -4,6 +4,7 @@ let $ = require('jquery');
 let songController = require('./song-controller');
 let templates = require('./template-builder');
 let factory = require('./song-factory');
+let filter = require('./song-filter');
 
 //hide all wrappers, show desired wrapper via id (css .hidden class)
 function showOnlyWrapper(id) {
@@ -39,5 +40,23 @@ $("#addSongForm").submit( function() {
 	//notify user of add
 	userAddNotification(songObject);
 });
+
+//listeners for select dropdowns; call fns in song-filter.js
+$(document).on('change', '#artist-select', function() {
+	// console.log("$('#artist-select').val()", $('#artist-select').val());
+	filter.filterArtist( $('#artist-select').val() );
+});
+
+$(document).on('change', '#album-select', function() {
+	filter.filterAlbum( $('#album-select').val() );
+});
+
+
+
+
+
+
+
+
 
 
