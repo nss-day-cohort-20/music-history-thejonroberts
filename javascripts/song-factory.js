@@ -26,3 +26,7 @@ module.exports.addSong = (songFormObj) => {
 	module.exports.storedSongs.push(songFormObj);
 };
 
+module.exports.removeSong = (index) => {
+	module.exports.storedSongs.splice(index, 1);
+};
+

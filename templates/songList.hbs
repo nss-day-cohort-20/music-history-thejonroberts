@@ -1,6 +1,6 @@
 {{#each songs}}
-	<li class="songListItem">
-		<button class="hideButton"> - </button>
+	<li class="songListItem" data-song-id="{{@index}}">
+		<button class="removeButton"> - </button>
 		<span class="title">{{title}}&nbsp;</span>
 		<span class="artist">{{artist}}&nbsp;</span>from&nbsp;
 		<span class="album">{{album}}</span>

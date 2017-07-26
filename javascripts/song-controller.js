@@ -13,8 +13,10 @@ function outputSongs( songsArr ) {
 }
 
 function removeButtonHandlers() {
-	$(".hideButton").click( function() {
-		this.parentNode.remove();
+	$(".removeButton").click( function() {
+		let index = $(this).parents('li').data('song-id');
+		factory.removeSong(index);
+		module.exports.songsToDOM();
 	});
 }
 
