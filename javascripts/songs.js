@@ -3,54 +3,13 @@
 let $ = require('jquery');
 let factory = require('./song-factory');
 let songController = require('./song-controller');
-let templates = require('./template-builder');
 
-songController.songsToDOM();
-
-//DOM - PAGE NAVIGATION
-function showOnlyWrapper(id) {
-	$(".pageWrapper").addClass("hidden");
-	$(id).removeClass("hidden");
-}
-//handlers for link clicks - hide other wrappers, show desired wrapper (css .hidden rules applied/removed)
-$("#addMusicAnchor").click( function() {
-	showOnlyWrapper("#addMusicWrapper");
-});
-
-$("#listMusicAnchor").click( function() {
-	showOnlyWrapper("#viewMusicWrapper");
+factory.getSongs()
+.then(() => {
 	songController.songsToDOM();
 });
 
-/////////////////////
-//DOM Modification //
-/////////////////////
+require('./view-controller');
 
-//notify user of add success
-function userAddNotification(newSong) {
-	console.log('newSong', newSong);
-	//remove any previous notification
-	$("#addNotification").empty();
-	let addNotification = templates.notification(newSong);
-	console.log('addNotification', addNotification);
-	$("#submitSongAdd").after(addNotification);
-}
 
-///////////////
-//DOM - DATA //
-///////////////
-
-//add new songs from user input
-$("#addSongForm").submit( function() {
-	// console.log('addSongEvent');
-	//make new song object from user and push to array
-	let songObject = {};
-	songObject.title = $("#titleEntry").val();
-	songObject.artist = $("#artistEntry").val();
-	songObject.album = $("#albumEntry").val();
-	// factory.addSong();
-	// allSongsArr.push(songObject);
-	console.log('songObject', songObject);
-	userAddNotification(songObject);
-});
 

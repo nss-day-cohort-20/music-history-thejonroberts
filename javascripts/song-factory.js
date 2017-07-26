@@ -2,12 +2,17 @@
 
 let $ = require('jquery');
 
+module.exports.storedSongs = [];
+
 module.exports.getSongs = () => {
   return new Promise( ( resolve, reject) => {
 		 $.ajax({
 			url: "../data/music.json"
 			})
 			.done( function(songData) {
+				for (var i = 0; i < songData.music.length; i++) {
+					module.exports.storedSongs.push(songData.music[i]);
+				}
 				resolve(songData);
 			})
 			.fail(function(error) {
@@ -18,17 +23,6 @@ module.exports.getSongs = () => {
 };
 
 module.exports.addSong = (songFormObj) => {
-  return new Promise ( (resolve, reject) => {
-    // let currentUser = firebase.auth().currentUser.uid;
-    // songFormObj.uid = currentUser;
-    $.ajax({
-      url: '../data/music.json',
-      type: "POST",
-      data: JSON.stringify(songFormObj),
-      dataType: "json" //probably unecessary
-    }).done( (songId) => {
-      resolve(songId);
-    });
-  });
+	module.exports.storedSongs.push(songFormObj);
 };
 
