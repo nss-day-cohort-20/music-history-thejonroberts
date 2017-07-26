@@ -16,7 +16,7 @@ module.exports.filterArtist = (selectedArtist) => {
 			}
 		});
 	}
-	//TODO - reset album select
+	//TODO - change album select based on artist
 };
 
 module.exports.filterAlbum = (selectedAlbum) => {
@@ -34,5 +34,4 @@ module.exports.filterAlbum = (selectedAlbum) => {
 			}
 		});
 	}
-	//TODO - reset artist select
 };
