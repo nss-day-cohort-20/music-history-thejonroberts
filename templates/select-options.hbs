@@ -1,16 +1,20 @@
 	<!-- ARTIST DROP -->
-	<legend>Artist:</legend>
-	<select id="artist-select" class="fullwidth">
-	<option value="All" selected>All</option>
-		{{#each songs}}
-			<option value="{{artist}}">{{artist}}</option>
-		{{/each}}
-	</select>
-	<!-- ALBUM DROP -->
-	<legend>Album:</legend>
-	<select id="album-select" class="fullwidth">
+	<div class="form-group">
+		<label for="artist-select">Artist:</label>
+		<select id="artist-select" class="form-control">
 		<option value="All" selected>All</option>
-		{{#each songs}}
-			<option value="{{album}}">{{album}}</option>
-		{{/each}}
-	</select>
+			{{#each songs}}
+				<option value="{{artist}}">{{artist}}</option>
+			{{/each}}
+		</select>
+	</div>
+	<!-- ALBUM DROP -->
+	<div class="form-group">
+		<label for="album-select">Album:</label>
+		<select id="album-select" class="form-control">
+			<option value="All" selected>All</option>
+			{{#each songs}}
+				<option value="{{album}}">{{album}}</option>
+			{{/each}}
+		</select>
+	</div>
