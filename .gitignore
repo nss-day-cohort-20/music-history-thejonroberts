@@ -3,3 +3,5 @@ css/
 lib/node_modules
 lib/.sass-cache
 .sass-cache
+./javascripts/values/
+./javascripts/values/fb-setting.js
