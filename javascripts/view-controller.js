@@ -55,7 +55,7 @@ function addSongFormHandler() {
 
 //listeners for select dropdowns; call fns in song-filter.js
 function viewSelectFilterHandlers() {
-	$('#artist-select').on('change', function() {
+	$(document).on('change', '#artist-select', function() {
 		console.log('art select');
 		filter.filterArtist( $('#artist-select').val() );
 	});

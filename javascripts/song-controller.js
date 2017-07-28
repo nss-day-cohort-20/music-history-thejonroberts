@@ -6,7 +6,6 @@ let templates = require('./template-builder');
 
 //Write each song in array to list
 function outputSongs( songsArr ) {
-	//write list of songs in songsArr to dom
 	$("#songList").empty();
 	let songList = templates.songList( songsArr );
 	$('#songList').html( songList );
@@ -15,7 +14,6 @@ function outputSongs( songsArr ) {
 	//populate select dropdown filters based on songsArr
 	let selectOptions = templates.populateSelect(songsArr);
 	$('#select-options').html(selectOptions);
-
 }
 // on remove click, remove song from array and redraw song list
 function removeButtonHandlers() {
