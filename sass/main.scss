@@ -1,9 +1,11 @@
 $grid-gutter-width-base: 30px;
 @import "../lib/node_modules/bootstrap/scss/bootstrap.scss";
 
-$navRed: #FFB4B0;
-$optionsBlue: #4DD7FA;
-$listYellow: #FEFAC0;
+$navRed: #F87493;
+$optionsBlue: #99E1D9;
+$listYellow: #FFFAE3;
+$textPurple: #5D576B;
+$almostWhite: #FCFCFC;
 
 .container {
 	max-height: 100vh;
@@ -20,6 +22,7 @@ nav {
 
 #options {
 	background-color: $optionsBlue;
+	color: $textPurple;
 }
 
 #songs {
@@ -30,11 +33,20 @@ nav {
 #songs,
 #addMusic {
 	background-color: $listYellow;
-	color: #785616;
+	color: $textPurple;
+}
+
+.nav-link {
+	color: $textPurple;
 }
 
 .list-group-item {
 	background-color: $listYellow;
+}
+
+.btn-primary {
+	background-color: $almostWhite;
+	color: $textPurple;
 }
 
 .albumSpan {
