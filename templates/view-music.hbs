@@ -1,4 +1,4 @@
-<div id="options" class="col-md-4">
+<div id="options" class="col-sm-4">
 	<form>
 			<!--SLIDER: SONG LENGTH-->
 		<div class="form-group">
@@ -23,49 +23,50 @@
 			<!-- populated from select-options.hbs -->
 		</div>
 				<!-- GENRE CHECKBOXES -->
-			<label for="genreFilter">Genre:</label>
-			<div id="genreFilter" class="row justify-content-around">
-				<div class="form-group col-xs-6">
-					<div class="form-check">
-			      <label for="rock">
-				      <input type="checkbox" id="rock" name="interest" value="rock">
-				      Rock
-			      </label>
+				<label for="genreFilter">Genre:</label>
+				<div  id="genreFilter" class="form-group row justify-content-around">
+					<div class="col-xs-6">
+						<div class="form-check">
+				      <label for="rock">
+					      <input type="checkbox" id="rock" name="interest" value="rock">
+					      Rock
+				      </label>
+				    </div>
+				    <div class="form-check">
+				      <label for="classical">
+					      <input type="checkbox" id="classical" name="interest" value="classical">
+					      Classical
+				      </label>
+				    </div>
+				    <div class="form-check">
+				      <label for="pop">
+					      <input type="checkbox" id="pop" name="interest" value="pop">
+					      Pop
+				      </label>
+				    </div>
 			    </div>
-			    <div class="form-check">
-			      <label for="classical">
-				      <input type="checkbox" id="classical" name="interest" value="classical">
-				      Classical
-			      </label>
-			    </div>
-			    <div class="form-check">
-			      <label for="pop">
-				      <input type="checkbox" id="pop" name="interest" value="pop">
-				      Pop
-			      </label>
-			    </div>
-		    </div>
-		    <div class="form-group col-xs-6">
-			    <div class="form-check">
-			      <label for="jazz">
-				      <input type="checkbox" id="jazz" name="interest" value="jazz">
-				      Jazz
-			      </label>
-			    </div>
-			    <div class="form-check">
-			      <label for="blues">
-				      <input type="checkbox" id="blues" name="interest" value="blues">
-				      Blues
-			      </label>
-			    </div>
-			    <div class="form-check">
-			      <label for="hiphop">
-				      <input type="checkbox" id="hiphop" name="interest" value="hiphop">
-				      Hop-Hop
-			      </label>
+			    <div class="col-xs-6">
+				    <div class="form-check">
+				      <label for="jazz">
+					      <input type="checkbox" id="jazz" name="interest" value="jazz">
+					      Jazz
+				      </label>
+				    </div>
+				    <div class="form-check">
+				      <label for="blues">
+					      <input type="checkbox" id="blues" name="interest" value="blues">
+					      Blues
+				      </label>
+				    </div>
+				    <div class="form-check">
+				      <label for="hiphop">
+					      <input type="checkbox" id="hiphop" name="interest" value="hiphop">
+					      Hop-Hop
+				      </label>
+						</div>
 					</div>
-				</div>
 			</div>
+
 			<div class="offset-sm-4">
 			  <button type="submit" class="btn btn-primary" name="filter">Filter</button>
 		  </div>
@@ -73,8 +74,8 @@
 	</div>
 
 <!-- PLAYLIST -->
-<div class="col-md-8" id="songs">
-	<ul id="songList">
+<div class="col-sm-8" id="songs">
+	<ul id="songList"  class="list-group">
 	<!--song-controller.js will write song list into this element-->
 	</ul>
 </div>

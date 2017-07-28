@@ -1,8 +1,10 @@
 {{#each songs}}
-	<li class="songListItem" data-song-id="{{@index}}">
-		<button class="removeButton btn btn-sm btn-secondary rounded-circle"> - </button>
+	<li class="songListItem list-group-item" data-song-id="{{@index}}">
+		<span>
+			<button class="removeButton btn btn-sm rounded-circle"> X </button>
 			<span class="titleSpan font-weight-bold">{{title}}</span> -
 			<span class="artistSpan">{{artist}}</span> from
 			<span class="albumSpan font-italic">{{album}}</span>
+		</span>
 	</li>
 {{/each}}
