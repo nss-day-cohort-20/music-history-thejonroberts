@@ -9,6 +9,7 @@ let filter = require('./song-filter');
 //run on load:
 showSongList();
 songController.songsToDOM();
+viewSelectFilterHandlers();
 
 function showSongList() {
 	$('#pageWrapper').html( templates.songListView() );
@@ -54,13 +55,15 @@ function addSongFormHandler() {
 
 //listeners for select dropdowns; call fns in song-filter.js
 function viewSelectFilterHandlers() {
-$(document).on('change', '#artist-select', function() {
-	filter.filterArtist( $('#artist-select').val() );
-});
+	$('#artist-select').on('change', function() {
+		console.log('art select');
+		filter.filterArtist( $('#artist-select').val() );
+	});
 
-$(document).on('change', '#album-select', function() {
-	filter.filterAlbum( $('#album-select').val() );
-});
+	$(document).on('change', '#album-select', function() {
+		console.log('alb select');
+		filter.filterAlbum( $('#album-select').val() );
+	});
 }
 
 

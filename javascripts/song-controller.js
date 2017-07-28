@@ -15,6 +15,7 @@ function outputSongs( songsArr ) {
 	//populate select dropdown filters based on songsArr
 	let selectOptions = templates.populateSelect(songsArr);
 	$('#select-options').html(selectOptions);
+
 }
 // on remove click, remove song from array and redraw song list
 function removeButtonHandlers() {
