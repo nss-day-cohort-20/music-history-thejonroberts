@@ -2,8 +2,10 @@
 
 let $ = require('jquery');
 
+//store songs in array (not using actual DB yet!)
 module.exports.storedSongs = [];
 
+//get songs from data file to store
 module.exports.getSongs = () => {
   return new Promise( ( resolve, reject) => {
 		 $.ajax({
@@ -22,6 +24,7 @@ module.exports.getSongs = () => {
 	});
 };
 
+//add/remove songs objects to storage array
 module.exports.addSong = (songFormObj) => {
 	module.exports.storedSongs.push(songFormObj);
 };

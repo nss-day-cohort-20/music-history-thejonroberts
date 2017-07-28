@@ -6,7 +6,7 @@ let templates = require('./template-builder');
 let factory = require('./song-factory');
 let filter = require('./song-filter');
 
-//run on load:
+//run on load  (this module required in songs.js)
 showSongList();
 songController.songsToDOM();
 viewSelectFilterHandlers();
@@ -56,12 +56,10 @@ function addSongFormHandler() {
 //listeners for select dropdowns; call fns in song-filter.js
 function viewSelectFilterHandlers() {
 	$(document).on('change', '#artist-select', function() {
-		console.log('art select');
 		filter.filterArtist( $('#artist-select').val() );
 	});
 
 	$(document).on('change', '#album-select', function() {
-		console.log('alb select');
 		filter.filterAlbum( $('#album-select').val() );
 	});
 }
