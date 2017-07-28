@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Music History</title>
-  <link rel="stylesheet" type="text/css" href="./lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="./lib/node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
   <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 
@@ -15,7 +15,8 @@
 	<div class="container">
 
 	<!-- NAV -->
-		<nav class="row nav">
+	<div class="row">
+		<nav class="nav col-12">
 			<li  class="nav-item">
 				<a  class="nav-link active" href="#" id="listMusicAnchor">List Music</a>
 			</li>
@@ -26,6 +27,7 @@
 				<a  class="nav-link disabled" href="#" id="profileAnchor">Profile</a>
 			</li>
 		</nav>
+	</div>
 
 		<!-- Song List and Add Song Views go here via hbs -->
 		<div id="pageWrapper" class="row"></div>

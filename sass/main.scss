@@ -1,118 +1,47 @@
-body {
-	padding: 10px;
+$grid-gutter-width-base: 30px;
+@import "../lib/node_modules/bootstrap/scss/bootstrap.scss";
+
+$navRed: #FFB4B0;
+$optionsBlue: #4DD7FA;
+$listYellow: #FEFAC0;
+
+.container {
+	max-height: 100vh;
 }
 
 nav {
-	background-color: #FFB4B0;
-	border: 1px solid black;
-	padding: 1em;
-	margin: 0 1% 20px 1%;
+	background-color: $navRed;
+	height: 6.25vh;
 }
 
-/*GENERAL CONTAINER STYLE*/
-.pageWrapper {
-	/*max-*/width: 100%;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-content: space-around;
-	display: flex;
-		#options,
-		#songs,
-		#addMusic {
-			border: 1px solid black;
-		}
-}
-
-.container > .halfwidth {
-	min-width: 45%;
-}
-
-.container legend {
-	display: block;
+#pageWrapper {
+	height: 93.75vh;
 }
 
 #options {
-	background-color: #4DD7FA;
-	width: 25%;
-	justify-content: flex-start;
-	padding: 10px;
-		button {
-			height: 1.7em;
-			width: 75%;
-			justify-content: center;
-		}
-}
-
-/*SONG LIST*/
-#songs,
-#addMusic {
-	background-color: #FEFAC0;
-	padding: 5px;
-	list-style-type: decimal-leading-zero;
-	color: #785616;
-		ul {
-			margin-left: 0;
-			padding: 0;
-		}
-		li {
-			width: 100%;
-			padding-bottom: .4em;
-			display: inline-flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			align-items: center;
-		}
+	background-color: $optionsBlue;
 }
 
 #songs {
-	width: 65%;
+	max-height: 100%;
+	overflow: scroll;
 }
 
+#songs,
 #addMusic {
-	width: 80%;
-	margin: 0 auto;
+	background-color: $listYellow;
+	color: #785616;
 }
 
-/**
- * TODO: style inputs nicer
- * Flex from song list is not quite what we want here.
- */
-
-.removeButton {
-	border: 1px solid darkgrey;
-	border-radius: 50%;
-}
-
-span {
-	text-align: center;
-	padding: 0;
-	margin: 0;
-}
-.titleSpan {
-	display: inline;
-	text-align: left;
-	font-weight: bolder;
-	font-size: 1.2em;
-	margin: 0 0 0 .5em;
-	flex-grow: 1;
+.list-group-item {
+	background-color: $listYellow;
 }
 
 .albumSpan {
 	font-style: oblique;
 }
-/*CONTAINER CLASSES: for dividing/centering fullwidth vs colums*/
-.fullwidth {
-	width: 95%;
-	display: flex;
-	justify-content: center;
-}
-
-.halfwidth {
-	width: 45%;
-	font-size: .8em;
-	display: inline-flex;
-}
 
 .hidden {
 	display: none;
 }
+
