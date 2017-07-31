@@ -6,10 +6,11 @@ let templates = require('./template-builder');
 let factory = require('./song-factory');
 let filter = require('./song-filter');
 
-//run on load  (this module required in songs.js)
-showSongList();
-songController.songsToDOM();
-viewSelectFilterHandlers();
+module.exports.loadSongListView = () => {
+	showSongList();
+	songController.songsToDOM();
+	viewSelectFilterHandlers();
+};
 
 function showSongList() {
 	$('#pageWrapper').html( templates.songListView() );
@@ -26,9 +27,7 @@ $("#addMusicAnchor").click( function() {
 });
 
 $("#listMusicAnchor").click( function() {
-	showSongList();
-	songController.songsToDOM();
-	viewSelectFilterHandlers();
+	module.exports.loadSongListView();
 });
 
 //notify user that add song click does something:

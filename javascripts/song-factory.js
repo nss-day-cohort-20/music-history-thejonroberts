@@ -1,20 +1,21 @@
 'use strict';
 
 let $ = require('jquery');
+let fbURL = "https://music-history-a22eb.firebaseio.com/";
+let firebase = require('./fb-config');
 
 //store songs in array (not using actual DB yet!)
 module.exports.storedSongs = [];
 
-//get songs from data file to store
 module.exports.getSongs = () => {
   return new Promise( ( resolve, reject) => {
 		 $.ajax({
-			url: "../data/music.json"
+			url: `${fbURL}music.json`
 			})
 			.done( function(songData) {
-				for (var i = 0; i < songData.music.length; i++) {
-					module.exports.storedSongs.push(songData.music[i]);
-				}
+				// for (var i = 0; i < songData.length; i++) {
+				// 	module.exports.storedSongs.push(songData[i]);
+				// }
 				resolve(songData);
 			})
 			.fail(function(error) {
