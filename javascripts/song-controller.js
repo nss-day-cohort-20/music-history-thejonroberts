@@ -27,5 +27,9 @@ function removeButtonHandlers() {
 }
 //make outputSongs() available outside module
 module.exports.songsToDOM = () => {
-	outputSongs( factory.storedSongs );
+	factory.getSongs()
+	.then( (songData) => {
+		console.log('songData', songData);
+		outputSongs( songData );
+	});
 };

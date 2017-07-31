@@ -27,10 +27,21 @@ module.exports.getSongs = () => {
 
 //add/remove songs objects to storage array
 module.exports.addSong = (songFormObj) => {
-	module.exports.storedSongs.push(songFormObj);
+	return new Promise( (resolve, reject) => {
+		let currentUser = firebase.auth().currentUser.uid;
+		songFormObj.uid = currentUser;
+		$.ajax({
+			url: `${fbURL}/music.json`,
+			type: "POST",
+			data: JSON.stringify(songFormObj),
+			dataType: "json"
+		}).done( (data) => {
+			resolve(data);
+		});
+	});
 };
 
 module.exports.removeSong = (index) => {
-	module.exports.storedSongs.splice(index, 1);
+	// module.exports.storedSongs.splice(index, 1);
 };
 
