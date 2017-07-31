@@ -13,6 +13,10 @@ let logInGoogle = () => {
 	return firebase.auth().signInWithPopup(provider);
 };
 
+let getUserId = () => {
+
+};
+
 let logOut = () => {
 	return firebase.auth().signOut();
 };

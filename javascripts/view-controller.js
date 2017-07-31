@@ -40,15 +40,19 @@ function userAddNotification(newSong) {
 
 function addSongFormHandler() {
 	$("#addSongForm").submit( function() {
-		//build new song object from user input
-		let songObject = {};
-		songObject.title = $("#titleEntry").val();
-		songObject.artist = $("#artistEntry").val();
-		songObject.album = $("#albumEntry").val();
-		//add Song to stored array in factory module
-		factory.addSong(songObject);
-		//notify user of add
-		userAddNotification(songObject);
+			//build new song object from user input
+			let songObject = {};
+			songObject.title = $("#titleEntry").val();
+			songObject.artist = $("#artistEntry").val();
+			songObject.album = $("#albumEntry").val();
+			songObject.genre = $("#albumEntry").val();
+			songObject.minutes = $("#lengthMinutes").val();
+			songObject.seconds = $("#lengthSeconds").val();
+			songObject.seconds = $("#albumEntry").val();
+			//add Song to stored array in factory module
+			factory.addSong(songObject);
+			//notify user of add
+			userAddNotification(songObject);
 	});
 }
 

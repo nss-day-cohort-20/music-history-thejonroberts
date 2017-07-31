@@ -41,7 +41,18 @@ module.exports.addSong = (songFormObj) => {
 	});
 };
 
-module.exports.removeSong = (index) => {
-	// module.exports.storedSongs.splice(index, 1);
+module.exports.removeSong = (movieId) => {
+	if (movieId) {
+		return new Promise( (resolve, reject) => {
+			$.ajax({
+				url: `${fbURL}/movies/${movieId}.json`,
+				type: "DELETE"
+			}).done( (data) => {
+				resolve (data);
+			});
+		});
+	} else {
+		console.log("delete failed no id");
+	}
 };
 
