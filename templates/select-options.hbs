@@ -1,0 +1,20 @@
+	<!-- ARTIST DROP -->
+	<div class="form-group">
+		<label for="artist-select">Artist:</label>
+		<select id="artist-select" class="form-control">
+		<option value="All" selected>All</option>
+			{{#each songs}}
+				<option value="{{artist}}">{{artist}}</option>
+			{{/each}}
+		</select>
+	</div>
+	<!-- ALBUM DROP -->
+	<div class="form-group">
+		<label for="album-select">Album:</label>
+		<select id="album-select" class="form-control">
+			<option value="All" selected>All</option>
+			{{#each songs}}
+				<option value="{{album}}">{{album}}</option>
+			{{/each}}
+		</select>
+	</div>

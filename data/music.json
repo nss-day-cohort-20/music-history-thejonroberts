@@ -1,0 +1,60 @@
+{
+	"music": [
+		{
+			"artist": "ZZ Top",
+			"album": "Eliminator",
+			"title": "Legs",
+			"length": "0:00",
+			"genre" : "Rock"
+		},
+		{
+			"artist": "Supertramp",
+			"album": "Breakfast in America",
+			"title": "The Logical Song",
+			"length": "0:00",
+			"genre" : "Rock"
+		},
+		{
+			"artist": "Pink Floyd",
+			"album": "The Wall",
+			"title": "Another Brick in the Wall",
+			"length": "0:00",
+			"genre" : "Rock"
+		},
+		{
+			"artist": "Guns & Roses",
+			"album": "Appetite for Destruction",
+			"title": "Welcome to the Jungle",
+			"length": "0:00",
+			"genre" : "Rock"
+		},
+		{
+			"artist": "Alanis Morisette",
+			"album": "Jagged Little Pill",
+			"title": "Ironic",
+			"length": "0:00",
+			"genre" : "Pop"
+		},
+		{
+			"artist": "Bikini Kill",
+			"album": "Reject All American",
+			"title": "Capri Pants",
+			"length": "0:00",
+			"genre" : "Rock"
+		},
+		{
+			"artist": "Guided by Voices",
+			"album": "Bee Thousand",
+			"title": "I am a Scientist",
+			"length": "0:00",
+			"genre" : "Rock"
+		},
+		{
+			"artist": "Built to Spill",
+			"album": "There's Nothing Wrong with Love",
+			"title": "Big Dipper",
+			"length": "0:00",
+			"genre" : "Rock"
+		}
+	]
+}
